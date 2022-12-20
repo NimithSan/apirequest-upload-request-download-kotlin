@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.apirequest.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_folderFragment"
+            app:popUpTo="@id/folderFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            app:destination="@id/folderFragment" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.apirequest.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderFragment"
+        android:name="com.example.apirequest.FolderFragment"
+        android:label="Folder"
+        tools:layout="@layout/fragment_folder" >
+        <action
+            android:id="@+id/action_folderFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_folderFragment_to_folderFormFragment"
+            app:destination="@id/folderFormFragment" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_folderFragment_to_fileFragment"
+            app:destination="@id/fileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderFormFragment"
+        android:name="com.example.apirequest.FolderFormFragment"
+        android:label="Folder Form"
+        tools:layout="@layout/fragment_folder_form" >
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <argument
+            android:name="folder_id"
+            app:argType="string" />
+        <argument
+            android:name="token1"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_folderFormFragment_to_folderFragment"
+            app:destination="@id/folderFragment" />
+        <action
+            android:id="@+id/action_folderFormFragment_to_fileFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fileFragment"
+            app:destination="@id/fileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fileFragment"
+        android:name="com.example.apirequest.FileFragment"
+        android:label="{folderName}"
+        tools:layout="@layout/fragment_file" >
+        <action
+            android:id="@+id/action_fileFragment_to_folderFragment"
+            app:destination="@id/folderFragment" />
+        <argument
+            android:name="folderName"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_fileFragment_to_folderFormFragment"
+            app:destination="@id/folderFormFragment" />
+        <argument
+            android:name="folder_id"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fileFragment_to_uploadFileFragment"
+            app:destination="@id/uploadFileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadFileFragment"
+        android:name="com.example.apirequest.UploadFileFragment"
+        android:label="Upload File"
+        tools:layout="@layout/fragment_upload_file" >
+        <action
+            android:id="@+id/action_uploadFileFragment_to_fileFragment"
+            app:destination="@id/fileFragment" />
+        <argument
+            android:name="folder_id"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_uploadFileFragment_to_fileFragment2"
+            app:destination="@id/fileFragment" />
+    </fragment>
+</navigation>
